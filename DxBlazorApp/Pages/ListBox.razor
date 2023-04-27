@@ -1,0 +1,10 @@
+﻿@page "/listbox"
+@using DxBlazorApp.Models;
+<h3>ListBox</h3>
+<DxListBox Data="@Roles"
+           TextFieldName="@nameof(Role.Name)"
+           SelectionMode="ListBoxSelectionMode.Multiple"
+           ShowCheckboxes="true"
+           @bind-Values="@RolesSelected">
+</DxListBox>
+
