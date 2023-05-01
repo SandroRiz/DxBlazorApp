@@ -1,0 +1,28 @@
+﻿@page "/filemanager"
+
+<h3>FileManager</h3>
+
+@if (!String.IsNullOrEmpty(ErrorMessage))
+{
+	<div class="alert alert-danger">@ErrorMessage</div>
+}
+@if (!HideFileManager)
+{
+	<div id="file-manager"></div>
+	<div id="photo-popup"></div>
+}
+
+@code {
+
+	[Inject] IJSRuntime JSRuntime { get; set; }
+
+	public string ErrorMessage;
+	public bool HideFileManager;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+       
+        await JSRuntime.InvokeVoidAsync("renderFileManager", "#file-manager");
+
+    }
+}

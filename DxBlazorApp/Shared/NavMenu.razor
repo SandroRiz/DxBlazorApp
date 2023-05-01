@@ -1,16 +1,17 @@
 ﻿<div class="sidebar @StateCssClass">
-<DxTreeView AllowSelectNodes="true" CssClass="app-sidebar">
-    <Nodes>
-        <DxTreeViewNode NavigateUrl="./" Text="Overview"></DxTreeViewNode>
-        <DxTreeViewNode NavigateUrl="grid" Text="Grid"></DxTreeViewNode>
-            <DxTreeViewNode NavigateUrl="ListBox" Text="Bind DxList"></DxTreeViewNode>
-    </Nodes>
-</DxTreeView>
+    <DxTreeView AllowSelectNodes="true" CssClass="app-sidebar">
+        <Nodes>
+            <DxTreeViewNode NavigateUrl="./" Text="Overview"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="grid" Text="Grid"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="/listbox" Text="Bind DxList"></DxTreeViewNode>
+            <DxTreeViewNode NavigateUrl="/filemanager" Text="File Manager"></DxTreeViewNode>
+        </Nodes>
+    </DxTreeView>
 </div>
 
 @code {
     [Parameter] public string? StateCssClass { get; set; }
 
-    
+
 
 }

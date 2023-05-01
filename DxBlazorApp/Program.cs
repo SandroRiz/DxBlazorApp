@@ -16,6 +16,8 @@ builder.Services.AddSingleton<WeatherForecastService>();
 builder.WebHost.UseWebRoot("wwwroot");
 builder.WebHost.UseStaticWebAssets();
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,6 +35,8 @@ app.UseRouting();
 
 
 app.MapBlazorHub();
+app.MapControllers();
 app.MapFallbackToPage("/_Host");
+
 
 app.Run();
