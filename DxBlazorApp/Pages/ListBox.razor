@@ -1,10 +1,13 @@
 ﻿@page "/listbox"
-@using DxBlazorApp.Models;
+@using Microgate.Extranet.Models;
 <h3>ListBox</h3>
 <DxListBox Data="@Roles"
-           TextFieldName="@nameof(Role.Name)"
+           TextFieldName="@nameof(AspNetRole.Name)"
            SelectionMode="ListBoxSelectionMode.Multiple"
            ShowCheckboxes="true"
            @bind-Values="@RolesSelected">
 </DxListBox>
-
+@if (RolesSelected != null)
+{
+    <p>There are @RolesSelected.Count() Role(s) in RolesSelected collection</p>
+}

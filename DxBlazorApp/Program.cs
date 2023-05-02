@@ -1,7 +1,8 @@
 using DxBlazorApp.Data;
+using Microgate.Extranet.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,11 @@ builder.WebHost.UseWebRoot("wwwroot");
 builder.WebHost.UseStaticWebAssets();
 
 builder.Services.AddControllers();
+
+var connectionString = builder.Configuration.GetConnectionString("Db");
+builder.Services.AddDbContextFactory<ExtranetDbContext>(o => o.UseSqlServer(connectionString));
+
+builder.Services.AddTransient<RoleService>();
 
 var app = builder.Build();
 

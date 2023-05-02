@@ -1,34 +1,37 @@
 
-using DxBlazorApp.Models;
+using Microgate.Extranet.Models;
+using Microgate.Extranet.Services;
+using Microsoft.AspNetCore.Components;
 
 namespace DxBlazorApp.Pages;
 
 public partial class ListBox
 {
-    public IEnumerable<Role> Roles { get; set; } 
-    public IEnumerable<Role> RolesSelected { get; set; }
+    public IEnumerable<AspNetRole> Roles { get; set; }
 
-    protected override  void OnInitialized()
+    public IEnumerable<AspNetRole> RolesSelected { get; set; }
+    [Inject] public RoleService roleService { get; set; }
+    protected override  async Task OnInitializedAsync()
     {
-        
-        Roles = GetAllRoles();
-        RolesSelected = GetMyRoles();
-       
+
+        Roles = await roleService.ListRolesAsync();
+        RolesSelected = await roleService.GetUserRolesByUserId("2edb20e4-bc5b-4a2b-8fde-af29b67b750e");
+
     }
 
-    private IEnumerable<Role> GetAllRoles()
-    {
-        List<Role> roles = new List<Role>();
-        roles.Add(new Role { Id = "ADM", Name = "Admin" });
-        roles.Add(new Role { Id = "SUP", Name = "Power User" });
-        roles.Add(new Role { Id = "USR", Name = "User" });
-        return roles;
-    }
+    //private IEnumerable<AspNetRole> GetAllRoles()
+    //{
+    //    List<AspNetRole> roles = new List<AspNetRole>();
+    //    roles.Add(new AspNetRole { Id = "ADM", Name = "Admin" });
+    //    roles.Add(new AspNetRole { Id = "SUP", Name = "Power User" });
+    //    roles.Add(new AspNetRole { Id = "USR", Name = "User" });
+    //    return roles;
+    //}
 
-    private IEnumerable<Role> GetMyRoles()
-    {
-        List<Role> roles = new List<Role>();
-        roles.Add(new Role { Id = "ADM", Name = "Admin" });
-        return roles;
-    }
+    //private IEnumerable<AspNetRole> GetMyRoles()
+    //{
+    //    List<AspNetRole> roles = new List<AspNetRole>();
+    //    roles.Add(new AspNetRole { Id = "ADM", Name = "Admin" });
+    //    return roles;
+    //}
 }
