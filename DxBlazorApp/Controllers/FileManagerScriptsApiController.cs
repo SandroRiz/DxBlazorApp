@@ -21,7 +21,8 @@ namespace Microgate.Extranet.API.Controllers
 		}
 
 		[HttpGet]
-		[Microsoft.AspNetCore.Mvc.Route("api/file-manager-file-system", Name = "FileManagementFileSystemApi")]
+        [AcceptVerbs("GET", "POST")]	// fix for download
+        [Microsoft.AspNetCore.Mvc.Route("api/file-manager-file-system", Name = "FileManagementFileSystemApi")]
 		public object FileSystem( FileSystemCommand command, string arguments)
 		{
 			try
